@@ -1,0 +1,54 @@
+{
+    "systemName": "train-ticket",
+    "version": "0.0.1",
+    "services": [
+        {
+            "id": "ts-service1",
+            "msName": "ts-service1",
+            "msPath": "train-ticket-microservices/ts-service1",
+            "commitId": "abcdef123456789abcdef123456789",
+            "endpoints": [
+                {
+                    "id": "GET:ts-service1.getRoutes#123",
+                    "api": "/api/v1/service1/routes",
+                    "file": "train-ticket-microservices/ts-service1/src/main/java/com/cloudhubs/trainticket/service1/controller/RouteController.java",
+                    "type": "@RequestMapping",
+                    "httpMethod": "GET",
+                    "methodName": "getRoutes",
+                    "arguments": "[@RequestBody RouteInfo info, @RequestHeader HttpHeaders headers]",
+                    "return": "java.util.List<com.cloudhubs.trainticket.service1.entity.Route>"
+                },
+                ...
+            ],
+            "dependencies": {
+                "restDependencies": [
+                    {
+                        "id": "ms2222222",
+                        "msName": "ts-service2",
+                        "calls": [
+                            {
+                                "id": "endpoint222222",
+                                "sourceFile": "train-ticket-microservices/ts-service1/src/main/java/com/cloudhubs/trainticket/service1/service/impl/Service1Impl.java",
+                                "sourceMethod": "methodNameWhereCallTookPlaceFrom"
+                            },
+                            ...
+                        ]
+                    }
+                    ...
+                ],
+                "dtoDependencies": [
+                    {
+                        "id": "ms3333333",
+                        "msName": "ts-service3",
+                        "sharedObjects": [...]
+                    },
+                    ...
+                ],
+                "entityDependencies": [...],
+                "constraintDepenencies": [...],
+                ...
+            }
+        },
+        ...
+    ]
+}

@@ -1,0 +1,78 @@
+{
+    "systemName": "train-ticket",
+    "version": "0.0.1",
+    "services": [
+        {
+            "action": "MODIFY",
+            "id": "ms1111111",
+            "msName": "ts-service1",
+            "msPath": "train-ticket-microservices/ts-service1",
+            "startCommit": "abcdef123456789abcdef123456789",
+            "endCommit": "bbbbb44444444aaaaaaaa66666666",
+            "endpoints": [
+                {
+                    "action": "MODIFY",
+                    "id": "endpoint1111111",
+                    "api": "/api/v1/service1/routes",
+                    "file": "train-ticket-microservices/ts-service1/src/main/java/com/cloudhubs/trainticket/service1/controller/RouteController.java",
+                    "type": "@RequestMapping",
+                    "httpMethod": "GET",
+                    "methodName": "getRoutes",
+                    "arguments": "[@RequestBody RouteInfo info, @RequestHeader HttpHeaders headers]",
+                    "return": "java.util.List<com.cloudhubs.trainticket.service1.entity.Route>"
+                },
+                {
+                    "action": "ADD",
+                    "id": "endpoint2222222",
+                    "api": "/api/v1/service1/routes/{id}",
+                    "file": "train-ticket-microservices/ts-service1/src/main/java/com/cloudhubs/trainticket/service1/controller/RouteController.java",
+                    "type": "@RequestMapping",
+                    "httpMethod": "GET",
+                    "methodName": "getRouteById",
+                    "arguments": "[@RequestBody RouteInfo info, @RequestHeader HttpHeaders headers]",
+                    "return": "com.cloudhubs.trainticket.service1.entity.Route"
+                },
+                {
+                    "action": "REMOVE",
+                    "id": "endpoint333333"
+                }
+            ],
+            "dependencies": {
+                "restDependencies": [
+                    {
+                        "action": "ADD",
+                        "id": "ms2222222",
+                        "msName": "ts-service2",
+                        "calls": [
+                            {
+                                "action": "ADD",
+                                "id": "endpoint4444444",
+                                "sourceFile": "train-ticket-microservices/ts-service1/src/main/java/com/cloudhubs/trainticket/service1/service/impl/Service1Impl.java",
+                                "sourceMethod": "methodNameWhereCallTookPlaceFrom"
+                            }
+                        ]
+                    },
+                    {
+                        "action": "REMOVE",
+                        "id": "ms3333333"
+                    }
+                ],
+                "dtoDependencies": [
+                    {
+                        "action": "MODIFY",
+                        "id": "ms4444444",
+                        "msName": "ts-service4",
+                        "sharedObjects": [
+                            {
+                                "action": "REMOVE",
+                                "id": "dto1234567"
+                            }
+                        ]
+                    }
+                ],
+                "entityDependencies": [],
+                "constraintDependencies": []
+            }
+        }
+    ]
+}
